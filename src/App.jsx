@@ -1,4 +1,4 @@
-import React, { useState, useCallback} from "react";
+import React, { useState, useCallback } from "react";
 import ReactFlow, {
   addEdge,
   Background,
@@ -25,7 +25,7 @@ function App() {
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [selectedNode, setSelectedNode] = useState(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
-  const [saved,setSaved]=useState(true)
+  const [saved, setSaved] = useState(true);
 
   const onConnect = useCallback(
     (params) => {
@@ -41,6 +41,8 @@ function App() {
     [setEdges]
   );
 
+  // Drop Node Function
+  
   const onDrop = useCallback(
     (event) => {
       event.preventDefault();
@@ -63,32 +65,30 @@ function App() {
     },
     [reactFlowInstance, setNodes]
   );
- 
+
+
+  // Saved Functionality
   const saveFlow = () => {
     const nodesWithNoTargets = nodes.filter(
       (node) => !edges.some((edge) => edge.target === node.id)
     );
-    
+
     if (nodesWithNoTargets.length > 1) {
       setSaved(false);
       alert("Error: More than one node with empty target handles");
       return;
-    } 
-    else{
+    } else {
       const flow = { nodes, edges };
-    console.log("Saved flow:", flow);
-    alert("Flow saved successfully");
+      console.log("Saved flow:", flow);
+      alert("Flow saved successfully");
     }
-
-    
   };
 
   return (
     <div>
       <div className="nav">
-        {saved===false? <button>Cannot save Flow</button>:""}
+        {saved === false ? <button>Cannot save Flow</button> : ""}
         <button onClick={saveFlow}>Save Changes</button>
-        
       </div>
       <div className="dndflow">
         <div
