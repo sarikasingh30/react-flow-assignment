@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback} from "react";
 import ReactFlow, {
   addEdge,
   Background,
@@ -63,19 +63,24 @@ function App() {
     },
     [reactFlowInstance, setNodes]
   );
+ 
   const saveFlow = () => {
     const nodesWithNoTargets = nodes.filter(
       (node) => !edges.some((edge) => edge.target === node.id)
     );
-    if(nodesWithNoTargets.length >0) {
+    
+    if (nodesWithNoTargets.length > 1) {
+      setSaved(false);
       alert("Error: More than one node with empty target handles");
-      setSaved(false)
       return;
-    }
-
-    const flow = { nodes, edges };
+    } 
+    else{
+      const flow = { nodes, edges };
     console.log("Saved flow:", flow);
     alert("Flow saved successfully");
+    }
+
+    
   };
 
   return (
