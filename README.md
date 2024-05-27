@@ -98,7 +98,11 @@ The application currently prevents saving flows with unconnected nodes. Ensure y
 
 ---
 ![alt text](image-5.png)
+
 ---
+
+![alt text](image-6.png)
+
 
 ## Technology Stack
 <b>React: </b> JavaScript library for building user interfaces.
